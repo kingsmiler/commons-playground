@@ -54,14 +54,8 @@ public class ClientAuthentication {
             HttpGet httpget = new HttpGet("http://httpbin.org/basic-auth/user/passwd");
 
             System.out.println("Executing request " + httpget.getRequestLine());
-            CloseableHttpResponse response = httpclient.execute(httpget);
-            try {
-                System.out.println("----------------------------------------");
-                System.out.println(response.getStatusLine());
-                System.out.println(EntityUtils.toString(response.getEntity()));
-            } finally {
-                response.close();
-            }
+
+            HttpClient.printResponse(httpclient.execute(httpget));
         } finally {
             httpclient.close();
         }
